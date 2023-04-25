@@ -10,6 +10,7 @@ message Message {
     User sender = 3;
     string text = 4;
     bytes data = 5;
+    string replyToId = 6;
 }
 
 message Chat {
@@ -21,4 +22,8 @@ message User {
     string id = 1;
     string first_name = 2;
     string user_name = 3;
+}
+
+service Chatting {
+    rpc ChatStream(stream Message) returns (stream Message){}
 }

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\nservice/go',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\nchat.proto\x12\x07service\"m\n\x07Message\x12\n\n\x02id\x18\x01 \x01(\t\x12\x1b\n\x04\x63hat\x18\x02 \x01(\x0b\x32\r.service.Chat\x12\x1d\n\x06sender\x18\x03 \x01(\x0b\x32\r.service.User\x12\x0c\n\x04text\x18\x04 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x05 \x01(\x0c\"2\n\x04\x43hat\x12\n\n\x02id\x18\x01 \x01(\t\x12\x1e\n\x07members\x18\x02 \x03(\x0b\x32\r.service.User\"9\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\x12\n\nfirst_name\x18\x02 \x01(\t\x12\x11\n\tuser_name\x18\x03 \x01(\tB\x0cZ\nservice/gob\x06proto3'
+  serialized_pb=b'\n\nchat.proto\x12\x07service\"\x80\x01\n\x07Message\x12\n\n\x02id\x18\x01 \x01(\t\x12\x1b\n\x04\x63hat\x18\x02 \x01(\x0b\x32\r.service.Chat\x12\x1d\n\x06sender\x18\x03 \x01(\x0b\x32\r.service.User\x12\x0c\n\x04text\x18\x04 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x05 \x01(\x0c\x12\x11\n\treplyToId\x18\x06 \x01(\t\"2\n\x04\x43hat\x12\n\n\x02id\x18\x01 \x01(\t\x12\x1e\n\x07members\x18\x02 \x03(\x0b\x32\r.service.User\"9\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\x12\n\nfirst_name\x18\x02 \x01(\t\x12\x11\n\tuser_name\x18\x03 \x01(\t2B\n\x08\x43hatting\x12\x36\n\nChatStream\x12\x10.service.Message\x1a\x10.service.Message\"\x00(\x01\x30\x01\x42\x0cZ\nservice/gob\x06proto3'
 )
 
 
@@ -68,6 +68,13 @@ _MESSAGE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='replyToId', full_name='service.Message.replyToId', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -80,8 +87,8 @@ _MESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=23,
-  serialized_end=132,
+  serialized_start=24,
+  serialized_end=152,
 )
 
 
@@ -119,8 +126,8 @@ _CHAT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=134,
-  serialized_end=184,
+  serialized_start=154,
+  serialized_end=204,
 )
 
 
@@ -165,8 +172,8 @@ _USER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=186,
-  serialized_end=243,
+  serialized_start=206,
+  serialized_end=263,
 )
 
 _MESSAGE.fields_by_name['chat'].message_type = _CHAT
@@ -200,4 +207,30 @@ _sym_db.RegisterMessage(User)
 
 
 DESCRIPTOR._options = None
+
+_CHATTING = _descriptor.ServiceDescriptor(
+  name='Chatting',
+  full_name='service.Chatting',
+  file=DESCRIPTOR,
+  index=0,
+  serialized_options=None,
+  create_key=_descriptor._internal_create_key,
+  serialized_start=265,
+  serialized_end=331,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='ChatStream',
+    full_name='service.Chatting.ChatStream',
+    index=0,
+    containing_service=None,
+    input_type=_MESSAGE,
+    output_type=_MESSAGE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_CHATTING)
+
+DESCRIPTOR.services_by_name['Chatting'] = _CHATTING
+
 # @@protoc_insertion_point(module_scope)
