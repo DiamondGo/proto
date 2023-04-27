@@ -26,4 +26,5 @@ message User {
 
 service Chatting {
     rpc ChatStream(stream Message) returns (stream Message){}
+    rpc Chat(Message) returns (Message){}
 }
