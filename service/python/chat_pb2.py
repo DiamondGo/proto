@@ -14,11 +14,12 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nchat.proto\x12\x07service\"\x80\x01\n\x07Message\x12\n\n\x02id\x18\x01 \x01(\t\x12\x1b\n\x04\x63hat\x18\x02 \x01(\x0b\x32\r.service.Chat\x12\x1d\n\x06sender\x18\x03 \x01(\x0b\x32\r.service.User\x12\x0c\n\x04text\x18\x04 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x05 \x01(\x0c\x12\x11\n\treplyToId\x18\x06 \x01(\t\"2\n\x04\x43hat\x12\n\n\x02id\x18\x01 \x01(\t\x12\x1e\n\x07members\x18\x02 \x03(\x0b\x32\r.service.User\"9\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\x12\n\nfirst_name\x18\x02 \x01(\t\x12\x11\n\tuser_name\x18\x03 \x01(\t2p\n\x08\x43hatting\x12\x36\n\nChatStream\x12\x10.service.Message\x1a\x10.service.Message\"\x00(\x01\x30\x01\x12,\n\x04\x43hat\x12\x10.service.Message\x1a\x10.service.Message\"\x00\x42\x0cZ\nservice/gob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nchat.proto\x12\x07service\"\x80\x01\n\x07Message\x12\n\n\x02id\x18\x01 \x01(\t\x12\x1b\n\x04\x63hat\x18\x02 \x01(\x0b\x32\r.service.Chat\x12\x1d\n\x06sender\x18\x03 \x01(\x0b\x32\r.service.User\x12\x0c\n\x04text\x18\x04 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x05 \x01(\x0c\x12\x11\n\treplyToId\x18\x06 \x01(\t\"1\n\x0bMessageList\x12\"\n\x08messages\x18\x01 \x03(\x0b\x32\x10.service.Message\"2\n\x04\x43hat\x12\n\n\x02id\x18\x01 \x01(\t\x12\x1e\n\x07members\x18\x02 \x03(\x0b\x32\r.service.User\"9\n\x04User\x12\n\n\x02id\x18\x01 \x01(\t\x12\x12\n\nfirst_name\x18\x02 \x01(\t\x12\x11\n\tuser_name\x18\x03 \x01(\t2t\n\x08\x43hatting\x12\x36\n\nChatStream\x12\x10.service.Message\x1a\x10.service.Message\"\x00(\x01\x30\x01\x12\x30\n\x04\x43hat\x12\x10.service.Message\x1a\x14.service.MessageList\"\x00\x42\x0cZ\nservice/gob\x06proto3')
 
 
 
 _MESSAGE = DESCRIPTOR.message_types_by_name['Message']
+_MESSAGELIST = DESCRIPTOR.message_types_by_name['MessageList']
 _CHAT = DESCRIPTOR.message_types_by_name['Chat']
 _USER = DESCRIPTOR.message_types_by_name['User']
 Message = _reflection.GeneratedProtocolMessageType('Message', (_message.Message,), {
@@ -27,6 +28,13 @@ Message = _reflection.GeneratedProtocolMessageType('Message', (_message.Message,
   # @@protoc_insertion_point(class_scope:service.Message)
   })
 _sym_db.RegisterMessage(Message)
+
+MessageList = _reflection.GeneratedProtocolMessageType('MessageList', (_message.Message,), {
+  'DESCRIPTOR' : _MESSAGELIST,
+  '__module__' : 'chat_pb2'
+  # @@protoc_insertion_point(class_scope:service.MessageList)
+  })
+_sym_db.RegisterMessage(MessageList)
 
 Chat = _reflection.GeneratedProtocolMessageType('Chat', (_message.Message,), {
   'DESCRIPTOR' : _CHAT,
@@ -49,10 +57,12 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._serialized_options = b'Z\nservice/go'
   _MESSAGE._serialized_start=24
   _MESSAGE._serialized_end=152
-  _CHAT._serialized_start=154
-  _CHAT._serialized_end=204
-  _USER._serialized_start=206
-  _USER._serialized_end=263
-  _CHATTING._serialized_start=265
-  _CHATTING._serialized_end=377
+  _MESSAGELIST._serialized_start=154
+  _MESSAGELIST._serialized_end=203
+  _CHAT._serialized_start=205
+  _CHAT._serialized_end=255
+  _USER._serialized_start=257
+  _USER._serialized_end=314
+  _CHATTING._serialized_start=316
+  _CHATTING._serialized_end=432
 # @@protoc_insertion_point(module_scope)

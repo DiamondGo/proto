@@ -28,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ChattingClient interface {
 	ChatStream(ctx context.Context, opts ...grpc.CallOption) (Chatting_ChatStreamClient, error)
-	Chat(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
+	Chat(ctx context.Context, in *Message, opts ...grpc.CallOption) (*MessageList, error)
 }
 
 type chattingClient struct {
@@ -70,8 +70,8 @@ func (x *chattingChatStreamClient) Recv() (*Message, error) {
 	return m, nil
 }
 
-func (c *chattingClient) Chat(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error) {
-	out := new(Message)
+func (c *chattingClient) Chat(ctx context.Context, in *Message, opts ...grpc.CallOption) (*MessageList, error) {
+	out := new(MessageList)
 	err := c.cc.Invoke(ctx, Chatting_Chat_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -84,7 +84,7 @@ func (c *chattingClient) Chat(ctx context.Context, in *Message, opts ...grpc.Cal
 // for forward compatibility
 type ChattingServer interface {
 	ChatStream(Chatting_ChatStreamServer) error
-	Chat(context.Context, *Message) (*Message, error)
+	Chat(context.Context, *Message) (*MessageList, error)
 	mustEmbedUnimplementedChattingServer()
 }
 
@@ -95,7 +95,7 @@ type UnimplementedChattingServer struct {
 func (UnimplementedChattingServer) ChatStream(Chatting_ChatStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method ChatStream not implemented")
 }
-func (UnimplementedChattingServer) Chat(context.Context, *Message) (*Message, error) {
+func (UnimplementedChattingServer) Chat(context.Context, *Message) (*MessageList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Chat not implemented")
 }
 func (UnimplementedChattingServer) mustEmbedUnimplementedChattingServer() {}

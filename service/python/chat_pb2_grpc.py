@@ -22,7 +22,7 @@ class ChattingStub(object):
         self.Chat = channel.unary_unary(
                 '/service.Chatting/Chat',
                 request_serializer=chat__pb2.Message.SerializeToString,
-                response_deserializer=chat__pb2.Message.FromString,
+                response_deserializer=chat__pb2.MessageList.FromString,
                 )
 
 
@@ -52,7 +52,7 @@ def add_ChattingServicer_to_server(servicer, server):
             'Chat': grpc.unary_unary_rpc_method_handler(
                     servicer.Chat,
                     request_deserializer=chat__pb2.Message.FromString,
-                    response_serializer=chat__pb2.Message.SerializeToString,
+                    response_serializer=chat__pb2.MessageList.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -94,6 +94,6 @@ class Chatting(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/service.Chatting/Chat',
             chat__pb2.Message.SerializeToString,
-            chat__pb2.Message.FromString,
+            chat__pb2.MessageList.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
