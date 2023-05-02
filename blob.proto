@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package service;
+
+option go_package = "service/go";
+
+
+message BlobValue {
+    oneof value {
+        bool boolean_value = 1;
+        int64 int_value = 2;
+        string string_value = 3;
+        float float_value = 4;
+        BlobList list_value = 5;
+        BlobMap map_value = 6;
+    }
+}
+
+message BlobMap {
+    map<string, BlobValue> values = 1;
+}
+
+message BlobList {
+    repeated BlobValue values = 1;
+}
